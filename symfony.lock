@@ -1,6 +1,45 @@
 {
+    "composer/semver": {
+        "version": "3.2.4"
+    },
+    "composer/xdebug-handler": {
+        "version": "1.4.5"
+    },
+    "doctrine/annotations": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "a2759dd6123694c8d901d0ec80006e044c2e6457"
+        },
+        "files": [
+            "config/routes/annotations.yaml"
+        ]
+    },
+    "doctrine/lexer": {
+        "version": "1.2.1"
+    },
+    "friendsofphp/php-cs-fixer": {
+        "version": "2.16",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "2.16",
+            "ref": "c1947bad147704aeaf0285745f0baae927a58959"
+        },
+        "files": [
+            ".php_cs.dist"
+        ]
+    },
     "php": {
         "version": "7.4"
+    },
+    "php-cs-fixer/diff": {
+        "version": "v1.3.1"
+    },
+    "phpstan/phpstan": {
+        "version": "0.12.69"
     },
     "psr/cache": {
         "version": "1.0.1"
@@ -102,6 +141,9 @@
     "symfony/mime": {
         "version": "v4.4.18"
     },
+    "symfony/options-resolver": {
+        "version": "v4.4.18"
+    },
     "symfony/polyfill-intl-idn": {
         "version": "v1.22.0"
     },
@@ -120,6 +162,9 @@
     "symfony/polyfill-php80": {
         "version": "v1.22.0"
     },
+    "symfony/process": {
+        "version": "v4.4.18"
+    },
     "symfony/routing": {
         "version": "4.2",
         "recipe": {
@@ -136,6 +181,9 @@
     },
     "symfony/service-contracts": {
         "version": "v2.2.0"
+    },
+    "symfony/stopwatch": {
+        "version": "v4.4.18"
     },
     "symfony/var-dumper": {
         "version": "v4.4.18"
