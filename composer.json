@@ -12,6 +12,8 @@
         "symfony/yaml": "4.4.*"
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.18",
+        "phpstan/phpstan": "^0.12.69"
     },
     "config": {
         "preferred-install": {
@@ -47,6 +49,12 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
+        ],
+        "phpstan": [
+            "phpstan analyse --level 8 src"
+        ],
+        "csfixer": [
+            "php-cs-fixer fix"
         ]
     },
     "conflict": {
