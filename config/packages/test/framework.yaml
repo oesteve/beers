@@ -2,3 +2,17 @@ framework:
     test: true
     session:
         storage_id: session.storage.mock_file
+
+services:
+    App\Infrastructure\Messenger\MessengerQueryBus:
+        public: true
+
+    App\Application\Query\QueryBus:
+        alias: App\Infrastructure\Messenger\MessengerQueryBus
+        public: true
+
+    App\Tests\Application\Handler\Query\TestQueryHandler: ~
+
+    _instanceof:
+        App\Application\Query\QueryHandler:
+            tags: [ { name: messenger.message_handler } ]

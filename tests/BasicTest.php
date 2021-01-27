@@ -2,22 +2,20 @@
 
 namespace App\Tests;
 
+use App\Tests\Infrastructure\BaseTestCase;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-
-class BasicTest extends WebTestCase
+class BasicTest extends BaseTestCase
 {
     public function testTrueShouldBeTrue(): void
     {
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 
     public function testClientRunInTestEnv(): void
     {
-        $client = static::createClient();
+        // @phpstan-ignore-next-line
+        $envName = $this->client->getKernel()->getEnvironment();
 
-        $envName = $client->getKernel()->getEnvironment();
-
-        $this->assertEquals($envName, 'test');
+        self::assertEquals($envName, 'test');
     }
 }
