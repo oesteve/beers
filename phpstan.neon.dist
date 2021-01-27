@@ -1,0 +1,3 @@
+parameters:
+    bootstrapFiles:
+        - bin/.phpunit/phpunit-8.5-0/vendor/autoload.php

@@ -13,7 +13,8 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.18",
-        "phpstan/phpstan": "^0.12.69"
+        "phpstan/phpstan": "^0.12.69",
+        "symfony/phpunit-bridge": "^5.2"
     },
     "config": {
         "preferred-install": {
@@ -55,6 +56,15 @@
         ],
         "csfixer": [
             "php-cs-fixer fix"
+        ],
+        "test": [
+            "composer install",
+            "simple-phpunit --testdox"
+        ],
+        "check-all": [
+            "./bin/phpunit",
+            "phpstan analyse --level 8 src tests",
+            "php-cs-fixer fix --dry-run"
         ]
     },
     "conflict": {
