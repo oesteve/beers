@@ -17,6 +17,24 @@ class Beer
         $this->description = $description;
     }
 
+    /*
+     * @param array<string,string> $data
+     * @return Beer
+     * @throws \InvalidArgumentException
+     */
+    public static function fromData(array $data): self
+    {
+        try {
+            return new self(
+                BeerId::fromInt((int) $data['id']),
+                $data['name'],
+                $data['description']
+            );
+        } catch (\Throwable $e) {
+            throw new \InvalidArgumentException($e->getMessage());
+        }
+    }
+
     public function getId(): BeerId
     {
         return $this->id;

@@ -6,6 +6,8 @@ interface BeerProvider
 {
     /**
      * @return array<Beer>
+     *
+     * @throws BeerProviderException
      */
     public function findByFood(string $food): array;
 }

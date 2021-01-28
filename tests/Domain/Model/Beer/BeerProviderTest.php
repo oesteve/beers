@@ -33,4 +33,20 @@ abstract class BeerProviderTest extends TestCase
         );
         self::assertEquals($res[0], $expected);
     }
+
+    public function testWithOneResult(): void
+    {
+        $provider = $this->getBeerProvider();
+        $res = $provider->findByFood('Bravas');
+
+        self::assertCount(1, $res);
+
+        $expected = new Beer(
+            BeerId::fromInt(2),
+            'Mahou',
+            'La cerveza que gusta en Madrid'
+        );
+
+        self::assertEquals($res[0], $expected);
+    }
 }
