@@ -7,7 +7,6 @@ use App\Application\Query\QueryBus;
 use App\Tests\Application\Handler\Query\TestQuery;
 use App\Tests\Application\Model\TestDto;
 use App\Tests\Infrastructure\BaseTestCase;
-use Symfony\Component\Messenger\Exception\NoHandlerForMessageException;
 
 class MessengerQueryBusTest extends BaseTestCase
 {
@@ -15,18 +14,6 @@ class MessengerQueryBusTest extends BaseTestCase
     {
         $bus = $this->get(QueryBus::class);
         self::assertInstanceOf(QueryBus::class, $bus);
-    }
-
-    public function testInvalidHandlerError(): void
-    {
-        /** @var QueryBus $bus */
-        $bus = $this->get(QueryBus::class);
-
-        // Demo disclaimer
-        // This should be a custom exception instead using implementation exception
-        $this->expectException(NoHandlerForMessageException::class);
-
-        $bus->query(new InvalidQuery());
     }
 
     public function testReturnValue(): void
