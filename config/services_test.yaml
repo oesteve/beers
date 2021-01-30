@@ -1,0 +1,21 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: true
+
+  App\Infrastructure\Messenger\MessengerQueryBus:
+    public: true
+
+  App\Application\Query\QueryBus:
+    alias: App\Infrastructure\Messenger\MessengerQueryBus
+    public: true
+
+  App\Tests\Application\Handler\Query\TestQueryHandler: ~
+
+  App\Domain\Model\Beer\BeerProvider:
+    alias: App\Infrastructure\InMemory\Beer\InMemoryBeerProvider
+
+  _instanceof:
+    App\Application\Query\QueryHandler:
+      tags: [ { name: messenger.message_handler } ]
