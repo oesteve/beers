@@ -13,7 +13,6 @@ class BasicTest extends BaseTestCase
 
     public function testClientRunInTestEnv(): void
     {
-        // @phpstan-ignore-next-line
         $envName = $this->client->getKernel()->getEnvironment();
 
         self::assertEquals($envName, 'test');

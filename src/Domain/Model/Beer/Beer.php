@@ -17,9 +17,11 @@ class Beer
         $this->description = $description;
     }
 
-    /*
+    /**
      * @param array<string,string> $data
+     *
      * @return Beer
+     *
      * @throws \InvalidArgumentException
      */
     public static function fromData(array $data): self
@@ -48,5 +50,14 @@ class Beer
     public function getDescription(): string
     {
         return $this->description;
+    }
+
+    public function getData(): array
+    {
+        return [
+            'id' => $this->id->getId(),
+            'name' => $this->name,
+            'description' => $this->description,
+        ];
     }
 }
