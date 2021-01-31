@@ -14,14 +14,14 @@ class BeersControllerTest extends BaseTestCase
 {
     public function testInvalidParameter(): void
     {
-        $this->client->request('GET', '/search?query=');
+        $this->client->request('GET', '/beers?query=');
 
         self::assertResponseStatusCodeSame(400);
     }
 
     public function testSearchNoResult(): void
     {
-        $this->client->request('GET', '/search?query=foo');
+        $this->client->request('GET', '/beers?query=foo');
 
         self::assertResponseStatusCodeSame(200);
 
@@ -40,11 +40,11 @@ class BeersControllerTest extends BaseTestCase
             'Beer description',
             new Image('http://example.com/image.png'),
             'Un sabor 5 estrellas',
-            new DateTime('1988-01-01')
+            DateTime::fromString('01/1999')
         );
         $provider->setBeer(['nachos'], $mahou);
 
-        $this->client->request('GET', '/search?query=nachos');
+        $this->client->request('GET', '/beers?query=nachos');
 
         self::assertResponseStatusCodeSame(200);
         self::assertEquals([[
@@ -64,11 +64,11 @@ class BeersControllerTest extends BaseTestCase
             'Beer description',
             new Image('http://example.com/image.png'),
             'Un sabor 5 estrellas',
-            new DateTime('1988-01-01')
+            DateTime::fromString('01/1988')
         );
         $provider->setBeer(['nachos'], $mahou);
 
-        $this->client->request('GET', '/beer/1');
+        $this->client->request('GET', '/beers/1');
 
         self::assertResponseStatusCodeSame(200);
         self::assertEquals([
@@ -77,7 +77,7 @@ class BeersControllerTest extends BaseTestCase
             'description' => 'Beer description',
             'image' => 'http://example.com/image.png',
             'slogan' => 'Un sabor 5 estrellas',
-            'firstBrewed' => '1988-01-01T00:00:00+01:00',
+            'firstBrewed' => '1988-01-01T00:00:00+00:00',
         ], $this->getBodyData());
     }
 }

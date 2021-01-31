@@ -38,7 +38,7 @@ class GetBeerTest extends BaseTestCase
             'Beer description',
             new Image('http://example.com/image.png'),
             'Un sabor 5 estrellas',
-            new DateTime('1988-01-01')
+            DateTime::fromString('01/1988')
         );
 
         $beerProvider->setBeer(['nachos'], $mahou);
@@ -51,7 +51,7 @@ class GetBeerTest extends BaseTestCase
             'Beer description',
             'http://example.com/image.png',
             'Un sabor 5 estrellas',
-            '1988-01-01T00:00:00+01:00'
+            '1988-01-01T00:00:00+00:00'
         );
 
         self::assertEquals($res, $dto);
