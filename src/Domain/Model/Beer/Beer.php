@@ -10,13 +10,13 @@ class Beer
 
     private string $description;
 
-    private Image $image;
+    private ?Image $image;
 
     private string $slogan;
 
     private \DateTimeInterface $firstBrewed;
 
-    public function __construct(BeerId $id, string $name, string $description, Image $image, string $slogan, \DateTimeInterface $firstBrewed)
+    public function __construct(BeerId $id, string $name, string $description, ?Image $image, string $slogan, \DateTimeInterface $firstBrewed)
     {
         $this->id = $id;
         $this->name = $name;
@@ -40,9 +40,9 @@ class Beer
                 BeerId::fromInt((int) $data['id']),
                 $data['name'],
                 $data['description'],
-                new Image($data['image']),
-                $data['slogan'],
-                new \DateTimeImmutable($data['first_brewed']),
+                $data['image_url'] ? new Image($data['image_url']) : null,
+                $data['tagline'],
+                DateTime::fromString($data['first_brewed']),
             );
         } catch (\Throwable $e) {
             throw new \InvalidArgumentException($e->getMessage());
@@ -64,7 +64,7 @@ class Beer
         return $this->description;
     }
 
-    public function getImage(): Image
+    public function getImage(): ?Image
     {
         return $this->image;
     }

@@ -8,6 +8,7 @@ use App\Application\Query\QueryBus;
 use App\Domain\Model\Beer\Beer;
 use App\Domain\Model\Beer\BeerId;
 use App\Domain\Model\Beer\BeerProvider;
+use App\Domain\Model\Beer\DateTime;
 use App\Domain\Model\Beer\Image;
 use App\Infrastructure\InMemory\Beer\InMemoryBeerProvider;
 use App\Tests\Infrastructure\BaseTestCase;
@@ -37,7 +38,7 @@ class GetBeerTest extends BaseTestCase
             'Beer description',
             new Image('http://example.com/image.png'),
             'Un sabor 5 estrellas',
-            new \DateTime('1988-01-01')
+            new DateTime('1988-01-01')
         );
 
         $beerProvider->setBeer(['nachos'], $mahou);

@@ -13,7 +13,7 @@ class DetailDataTransformer
             $beer->getId()->getId(),
             $beer->getName(),
             $beer->getDescription(),
-            $beer->getImage()->getUrl(),
+            null !== $beer->getImage() ? $beer->getImage()->getUrl() : null,
             $beer->getSlogan(),
             $beer->getFirstBrewed()->format(DATE_ATOM)
         );

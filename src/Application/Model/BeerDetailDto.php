@@ -10,13 +10,13 @@ class BeerDetailDto
 
     private string $description;
 
-    private string $image;
+    private ?string $image;
 
     private string $slogan;
 
     private string $firstBrewed;
 
-    public function __construct(int $id, string $name, string $description, string $image, string $slogan, string $firstBrewed)
+    public function __construct(int $id, string $name, string $description, ?string $image, string $slogan, string $firstBrewed)
     {
         $this->id = $id;
         $this->name = $name;

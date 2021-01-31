@@ -40,12 +40,12 @@ class GuzzleBeerProvider implements BeerProvider
      */
     public function findById(BeerId $id): Beer
     {
-        $request = '/v2/beer/'.$id->getId();
+        $request = '/v2/beers/'.$id->getId();
 
         try {
             $data = $this->get($request);
 
-            return Beer::fromData($data);
+            return Beer::fromData($data[0]);
         } catch (\Exception $e) {
             if ($e instanceof ClientException && 404 === $e->getResponse()->getStatusCode()) {
                 throw BeerNotFoundException::formId($id);

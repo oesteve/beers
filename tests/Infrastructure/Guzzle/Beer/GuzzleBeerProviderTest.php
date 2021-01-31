@@ -46,17 +46,17 @@ class GuzzleBeerProviderTest extends BeerProviderTest
                         'id' => 1,
                         'name' => 'Buff',
                         'description' => "Homer Simpson's favorite beer",
-                        'image' => 'https://example.com/image.png',
-                        'slogan' => 'Duffman is here to refill your beer',
-                        'first_brewed' => '1980-01-01T00:00:00.000000+0100',
+                        'image_url' => 'https://example.com/image.png',
+                        'tagline' => 'Duffman is here to refill your beer',
+                        'first_brewed' => '1980/01',
                     ],
                     [
                         'id' => 4,
                         'name' => 'Beeeeer',
                         'description' => 'Unknow beer',
-                        'image' => 'https://example.com/image.png',
-                        'slogan' => 'Unknow slogan',
-                        'first_brewed' => '1980-01-01T00:00:00.000000+0100',
+                        'image_url' => 'https://example.com/image.png',
+                        'tagline' => 'Unknow slogan',
+                        'first_brewed' => '1980/01',
                     ],
                 ];
             }
@@ -68,23 +68,23 @@ class GuzzleBeerProviderTest extends BeerProviderTest
                         'id' => 2,
                         'name' => 'Mahou',
                         'description' => 'La cerveza que gusta en Madrid',
-                        'image' => 'https://example.com/image.png',
-                        'slogan' => 'Un sabor 5 estrellas',
-                        'first_brewed' => '1980-01-01',
+                        'image_url' => 'https://example.com/image.png',
+                        'tagline' => 'Un sabor 5 estrellas',
+                        'first_brewed' => '1980/01',
                     ],
                 ];
             }
 
             $match = preg_match('/1$/', $path);
             if ($match > 0) {
-                $data = [
+                $data = [[
                     'id' => 2,
                     'name' => 'Mahou',
                     'description' => 'La cerveza que gusta en Madrid',
-                    'image' => 'https://example.com/image.png',
-                    'slogan' => 'Un sabor 5 estrellas',
-                    'first_brewed' => '1980-01-01',
-                ];
+                    'image_url' => 'https://example.com/image.png',
+                    'tagline' => 'Un sabor 5 estrellas',
+                    'first_brewed' => '1980/01',
+                ]];
             }
 
             return new FulfilledPromise(new Response(200, [], json_encode($data, JSON_THROW_ON_ERROR)));
