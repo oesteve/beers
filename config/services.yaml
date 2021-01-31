@@ -34,6 +34,9 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
+    GuzzleHttp\Client:
+        arguments:
+            - { base_uri: '%env(PUNK_API_URI)%' }
 
     App\Domain\Model\Beer\BeerProvider:
-        alias: App\Infrastructure\InMemory\Beer\InMemoryBeerProvider
+        alias: App\Infrastructure\Guzzle\Beer\GuzzleBeerProvider
