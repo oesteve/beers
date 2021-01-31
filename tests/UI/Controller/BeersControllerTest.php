@@ -74,6 +74,9 @@ class BeersControllerTest extends BaseTestCase
             'id' => 1,
             'name' => 'Mahou',
             'description' => 'Beer description',
+            'image' => 'http://example.com/image.png',
+            'slogan' => 'Un sabor 5 estrellas',
+            'firstBrewed' => '1988-01-01T00:00:00+01:00',
         ], $this->getBodyData());
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Tests\Application\Handler\Query;
 
 use App\Application\Handler\Query\GetBeer;
+use App\Application\Model\BeerDetailDto;
 use App\Application\Query\QueryBus;
 use App\Domain\Model\Beer\Beer;
 use App\Domain\Model\Beer\BeerId;
@@ -43,6 +44,15 @@ class GetBeerTest extends BaseTestCase
 
         $res = $queryBus->query(new GetBeer(1));
 
-        self::assertEquals($res, $mahou);
+        $dto = new BeerDetailDto(
+            1,
+            'Mahou',
+            'Beer description',
+            'http://example.com/image.png',
+            'Un sabor 5 estrellas',
+            '1988-01-01T00:00:00+01:00'
+        );
+
+        self::assertEquals($res, $dto);
     }
 }
