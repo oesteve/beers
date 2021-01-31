@@ -27,7 +27,7 @@ And the detail endpoint:
 
     curl http://localhost:8000/beers/13
 
-If you have je `jq` tool installed in your system, you can get a pretty version this these commands:
+If you have `jq` tool installed in your system, you can get a pretty version with these commands:
 
     curl http://localhost:8000/beers?query=nachos | jq -r '.'
     curl http://localhost:8000/beers/12 | jq -r '.'
