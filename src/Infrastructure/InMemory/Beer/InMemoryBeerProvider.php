@@ -3,6 +3,8 @@
 namespace App\Infrastructure\InMemory\Beer;
 
 use App\Domain\Model\Beer\Beer;
+use App\Domain\Model\Beer\BeerId;
+use App\Domain\Model\Beer\BeerNotFoundException;
 use App\Domain\Model\Beer\BeerProvider;
 
 class InMemoryBeerProvider implements BeerProvider
@@ -26,6 +28,17 @@ class InMemoryBeerProvider implements BeerProvider
         }
 
         return $res;
+    }
+
+    public function findById(BeerId $id): Beer
+    {
+        $key = $id->getId();
+
+        if (!isset($this->items[$key])) {
+            throw BeerNotFoundException::formId($id);
+        }
+
+        return $this->items[$key][1];
     }
 
     /**

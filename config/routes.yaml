@@ -1,3 +1,7 @@
-index:
+search:
     path: /search
     controller: App\UI\Controller\BeersController::search
+
+get:
+    path: /beer/{id}
+    controller: App\UI\Controller\BeersController::detail

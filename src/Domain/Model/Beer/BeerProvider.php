@@ -10,4 +10,9 @@ interface BeerProvider
      * @throws BeerProviderException
      */
     public function findByFood(string $food): array;
+
+    /**
+     * @throws BeerNotFoundException
+     */
+    public function findById(BeerId $id): Beer;
 }

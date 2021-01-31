@@ -48,4 +48,25 @@ class BeersControllerTest extends BaseTestCase
             'description' => 'Un sabor 5 estrellas',
         ]], $this->getBodyData());
     }
+
+    public function testFind(): void
+    {
+        /** @var InMemoryBeerProvider $provider */
+        $provider = $this->get(BeerProvider::class);
+        $mahou = new Beer(
+            BeerId::fromInt(1),
+            'Mahou',
+            'Un sabor 5 estrellas'
+        );
+        $provider->setBeer(['nachos'], $mahou);
+
+        $this->client->request('GET', '/beer/1');
+
+        self::assertResponseStatusCodeSame(200);
+        self::assertEquals([
+            'id' => 1,
+            'name' => 'Mahou',
+            'description' => 'Un sabor 5 estrellas',
+        ], $this->getBodyData());
+    }
 }

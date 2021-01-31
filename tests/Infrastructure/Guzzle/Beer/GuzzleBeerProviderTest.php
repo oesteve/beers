@@ -27,14 +27,19 @@ class GuzzleBeerProviderTest extends BeerProviderTest
         $handler = function (RequestInterface $request) {
             $data = [];
 
-            $uri = $request->getUri()->getQuery();
+            $path = $request->getUri()->getPath().$request->getUri()->getQuery();
 
-            $match = preg_match('/food\=error/', $uri);
+            $match = preg_match('/food\=error/', $path);
             if ($match > 0) {
                 return new FulfilledPromise(new Response(500));
             }
 
-            $match = preg_match('/food=foo/', $uri);
+            $match = preg_match('/99$/', $path);
+            if ($match > 0) {
+                return new FulfilledPromise(new Response(404));
+            }
+
+            $match = preg_match('/food=foo/', $path);
             if ($match > 0) {
                 $data = [
                     [
@@ -50,7 +55,7 @@ class GuzzleBeerProviderTest extends BeerProviderTest
                 ];
             }
 
-            $match = preg_match('/food=Bravas/', $uri);
+            $match = preg_match('/food=Bravas/', $path);
             if ($match > 0) {
                 $data = [
                     [
@@ -58,6 +63,15 @@ class GuzzleBeerProviderTest extends BeerProviderTest
                         'name' => 'Mahou',
                         'description' => 'La cerveza que gusta en Madrid',
                     ],
+                ];
+            }
+
+            $match = preg_match('/1$/', $path);
+            if ($match > 0) {
+                $data = [
+                    'id' => 2,
+                    'name' => 'Mahou',
+                    'description' => 'La cerveza que gusta en Madrid',
                 ];
             }
 

@@ -4,6 +4,7 @@ namespace App\Tests\Domain\Model\Beer;
 
 use App\Domain\Model\Beer\Beer;
 use App\Domain\Model\Beer\BeerId;
+use App\Domain\Model\Beer\BeerNotFoundException;
 use App\Domain\Model\Beer\BeerProvider;
 use PHPUnit\Framework\TestCase;
 
@@ -48,5 +49,23 @@ abstract class BeerProviderTest extends TestCase
         );
 
         self::assertEquals($res[0], $expected);
+    }
+
+    public function testBeerNotFoundError(): void
+    {
+        $this->expectException(BeerNotFoundException::class);
+
+        $provider = $this->getBeerProvider();
+        $provider->findById(BeerId::fromInt(99));
+    }
+
+    public function tesGetBeer(): void
+    {
+        $this->expectException(BeerNotFoundException::class);
+        $provider = $this->getBeerProvider();
+
+        $beer = $provider->findById(BeerId::fromInt(1));
+
+        self::assertInstanceOf(Beer::class, $beer);
     }
 }
