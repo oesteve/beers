@@ -4,6 +4,7 @@ namespace App\UI\Controller;
 
 use App\Application\Handler\Query\FindBeers;
 use App\Application\Handler\Query\GetBeer;
+use App\Application\Model\BeerResultDto;
 use App\Application\Query\QueryBus;
 use App\Domain\Model\Beer\Beer;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -20,9 +21,9 @@ class BeersController
             throw new InvalidParameterException('Invalid query param value');
         }
 
-        /** @var array<Beer> $res */
+        /** @var array<BeerResultDto> $res */
         $res = $queryBus->query(new FindBeers($query));
-        $data = array_map(fn (Beer $beer) => $beer->getData(), $res);
+        $data = array_map(fn (BeerResultDto $beer) => $beer->getData(), $res);
 
         return new JsonResponse($data);
     }

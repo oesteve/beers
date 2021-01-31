@@ -2,8 +2,10 @@
 
 namespace App\Tests\Application\Handler\Query;
 
+use App\Application\DataTransformer\ResultDataTransformer;
 use App\Application\Handler\Query\FindBeers;
 use App\Application\Handler\Query\FindBeersHandler;
+use App\Application\Model\BeerResultDto;
 use App\Application\Query\QueryBus;
 use App\Domain\Model\Beer\Beer;
 use App\Domain\Model\Beer\BeerId;
@@ -17,7 +19,9 @@ class FindBeersTest extends BaseTestCase
     public function testEmptyResult(): void
     {
         $provider = new InMemoryBeerProvider();
-        $handler = new FindBeersHandler($provider);
+        $transformer = new ResultDataTransformer();
+
+        $handler = new FindBeersHandler($provider, $transformer);
 
         /** @var array $res */
         $res = $handler(new FindBeers('bar'));
@@ -58,6 +62,6 @@ class FindBeersTest extends BaseTestCase
         $res = $queryBus->query(new FindBeers('nachos'));
 
         self::assertCount(1, $res);
-        self::assertInstanceOf(Beer::class, $res[0]);
+        self::assertInstanceOf(BeerResultDto::class, $res[0]);
     }
 }
