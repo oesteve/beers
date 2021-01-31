@@ -26,13 +26,7 @@ abstract class BeerProviderTest extends TestCase
         $res = $provider->findByFood('foo');
 
         self::assertCount(2, $res);
-
-        $expected = new Beer(
-            BeerId::fromInt(1),
-            'Buff',
-            "Homer Simpson's favorite beer"
-        );
-        self::assertEquals($res[0], $expected);
+        self::assertEquals($res[0]->getId(), BeerId::fromInt(1));
     }
 
     public function testWithOneResult(): void
@@ -41,14 +35,7 @@ abstract class BeerProviderTest extends TestCase
         $res = $provider->findByFood('Bravas');
 
         self::assertCount(1, $res);
-
-        $expected = new Beer(
-            BeerId::fromInt(2),
-            'Mahou',
-            'La cerveza que gusta en Madrid'
-        );
-
-        self::assertEquals($res[0], $expected);
+        self::assertEquals($res[0]->getId(), BeerId::fromInt(2));
     }
 
     public function testBeerNotFoundError(): void
@@ -59,9 +46,8 @@ abstract class BeerProviderTest extends TestCase
         $provider->findById(BeerId::fromInt(99));
     }
 
-    public function tesGetBeer(): void
+    public function testGetBeer(): void
     {
-        $this->expectException(BeerNotFoundException::class);
         $provider = $this->getBeerProvider();
 
         $beer = $provider->findById(BeerId::fromInt(1));

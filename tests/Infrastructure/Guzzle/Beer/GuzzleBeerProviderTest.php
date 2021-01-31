@@ -46,11 +46,17 @@ class GuzzleBeerProviderTest extends BeerProviderTest
                         'id' => 1,
                         'name' => 'Buff',
                         'description' => "Homer Simpson's favorite beer",
+                        'image' => 'https://example.com/image.png',
+                        'slogan' => 'Duffman is here to refill your beer',
+                        'first_brewed' => '1980-01-01T00:00:00.000000+0100',
                     ],
                     [
                         'id' => 4,
                         'name' => 'Beeeeer',
                         'description' => 'Unknow beer',
+                        'image' => 'https://example.com/image.png',
+                        'slogan' => 'Unknow slogan',
+                        'first_brewed' => '1980-01-01T00:00:00.000000+0100',
                     ],
                 ];
             }
@@ -62,6 +68,9 @@ class GuzzleBeerProviderTest extends BeerProviderTest
                         'id' => 2,
                         'name' => 'Mahou',
                         'description' => 'La cerveza que gusta en Madrid',
+                        'image' => 'https://example.com/image.png',
+                        'slogan' => 'Un sabor 5 estrellas',
+                        'first_brewed' => '1980-01-01',
                     ],
                 ];
             }
@@ -72,6 +81,9 @@ class GuzzleBeerProviderTest extends BeerProviderTest
                     'id' => 2,
                     'name' => 'Mahou',
                     'description' => 'La cerveza que gusta en Madrid',
+                    'image' => 'https://example.com/image.png',
+                    'slogan' => 'Un sabor 5 estrellas',
+                    'first_brewed' => '1980-01-01',
                 ];
             }
 

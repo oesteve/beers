@@ -7,6 +7,7 @@ use App\Application\Query\QueryBus;
 use App\Domain\Model\Beer\Beer;
 use App\Domain\Model\Beer\BeerId;
 use App\Domain\Model\Beer\BeerProvider;
+use App\Domain\Model\Beer\Image;
 use App\Infrastructure\InMemory\Beer\InMemoryBeerProvider;
 use App\Tests\Infrastructure\BaseTestCase;
 use Symfony\Component\Messenger\Exception\HandlerFailedException;
@@ -29,7 +30,15 @@ class GetBeerTest extends BaseTestCase
         /** @var QueryBus $queryBus */
         $queryBus = $this->get(QueryBus::class);
 
-        $mahou = new Beer(BeerId::fromInt(1), 'Mahou', 'Un sabor 5 estrellas');
+        $mahou = new Beer(
+            BeerId::fromInt(1),
+            'Mahou',
+            'Beer description',
+            new Image('http://example.com/image.png'),
+            'Un sabor 5 estrellas',
+            new \DateTime('1988-01-01')
+        );
+
         $beerProvider->setBeer(['nachos'], $mahou);
 
         $res = $queryBus->query(new GetBeer(1));

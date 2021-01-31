@@ -5,6 +5,7 @@ namespace App\Tests\UI\Controller;
 use App\Domain\Model\Beer\Beer;
 use App\Domain\Model\Beer\BeerId;
 use App\Domain\Model\Beer\BeerProvider;
+use App\Domain\Model\Beer\Image;
 use App\Infrastructure\InMemory\Beer\InMemoryBeerProvider;
 use App\Tests\Infrastructure\BaseTestCase;
 
@@ -35,7 +36,10 @@ class BeersControllerTest extends BaseTestCase
         $mahou = new Beer(
             BeerId::fromInt(1),
             'Mahou',
-            'Un sabor 5 estrellas'
+            'Beer description',
+            new Image('http://example.com/image.png'),
+            'Un sabor 5 estrellas',
+            new \DateTime('1988-01-01')
         );
         $provider->setBeer(['nachos'], $mahou);
 
@@ -45,7 +49,7 @@ class BeersControllerTest extends BaseTestCase
         self::assertEquals([[
             'id' => 1,
             'name' => 'Mahou',
-            'description' => 'Un sabor 5 estrellas',
+            'description' => 'Beer description',
         ]], $this->getBodyData());
     }
 
@@ -56,7 +60,10 @@ class BeersControllerTest extends BaseTestCase
         $mahou = new Beer(
             BeerId::fromInt(1),
             'Mahou',
-            'Un sabor 5 estrellas'
+            'Beer description',
+            new Image('http://example.com/image.png'),
+            'Un sabor 5 estrellas',
+            new \DateTime('1988-01-01')
         );
         $provider->setBeer(['nachos'], $mahou);
 
@@ -66,7 +73,7 @@ class BeersControllerTest extends BaseTestCase
         self::assertEquals([
             'id' => 1,
             'name' => 'Mahou',
-            'description' => 'Un sabor 5 estrellas',
+            'description' => 'Beer description',
         ], $this->getBodyData());
     }
 }
