@@ -16,7 +16,7 @@ class BeersControllerTest extends BaseTestCase
     {
         $this->client->request('GET', '/search?query=');
 
-        self::assertResponseStatusCodeSame(500);
+        self::assertResponseStatusCodeSame(400);
     }
 
     public function testSearchNoResult(): void

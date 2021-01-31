@@ -10,7 +10,6 @@ use App\Domain\Model\Beer\Beer;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Exception\InvalidParameterException;
 
 class BeersController
 {
@@ -18,7 +17,7 @@ class BeersController
     {
         $query = $request->query->get('query');
         if (!$query) {
-            throw new InvalidParameterException('Invalid query param value');
+            return new JsonResponse(['message' => 'Invalid query param value'], 400);
         }
 
         /** @var array<BeerResultDto> $res */
